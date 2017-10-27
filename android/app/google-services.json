@@ -1,0 +1,62 @@
+{
+  "project_info": {
+    "project_number": "220361161251",
+    "firebase_url": "https://cibo-8c01b.firebaseio.com",
+    "project_id": "cibo-8c01b",
+    "storage_bucket": "cibo-8c01b.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:220361161251:android:9363fdef7464730f",
+        "android_client_info": {
+          "package_name": "com.cibo"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "220361161251-o1b23smitq3v7ho5p3eb7pjj8kmvjbq8.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.cibo",
+            "certificate_hash": "13adc312a1c30c251004b331ecd02abad1fad11c"
+          }
+        },
+        {
+          "client_id": "220361161251-444ac6701n7udv30jfrh8alektk91mhi.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAWSqi77OtHnMbLP-QZsEYKuYfWxRs3SDQ"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "220361161251-drkqqpd995a07tnv7948te9ap5kgjq84.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "org.reactjs.native.example.cibo"
+              }
+            },
+            {
+              "client_id": "220361161251-444ac6701n7udv30jfrh8alektk91mhi.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -1,0 +1,68 @@
+* Start using git
+* Figure out how to run both ios and android at once
+* Better Eng Design + Roadmap (what functionality do I need before moving to design?)
+
+* Handling errors with mealfetch and all actions!
+* Ordering of feed
+* Staying logged in
+* Spinner for when photo is being captured?
+* Choose photo from library
+* Edit meal photo
+* Look up open source react native projects for good design...
+	* Add button on the bottom right
+* Push meal flow ontop of feed vs. slide?
+* Try with iPhone
+* Request permissions (Android) programmatically (React Native, PermissionsAndroid)
+
+* Handling login errors: https://firebase.google.com/docs/auth/ios/errors
+* Security of download URL for firebase storage?
+
+
+10/27
+--------
+X Finish save image to firebase!!
+X Read a bit about linking (react-native link vs. manual/pod install for iOS)
+
+
+10/26
+--------
+X Added react-native-fetch-blob (struggled a lot with getting build to work again)
+X Try with Android Device (gut debugger working too)
+
+
+10/25
+--------
+X Add Android Setup for FBSDK and react native firebase
+
+
+10/24
+--------
+X Save meal to firebase (finish watching video and saving...)
+X Display meal in personal feed
+
+
+10/23
+---------
+X Get location for image
+X Finish adding react-native-camera...
+X Figure out flow for when photo is captured? What does the state need to be?
+
+
+10/22
+-----------
+X Create landing page
+X Finish Auth states - spinner, log out
+
+
+QUESTIONS
+------------
+* Is add "multiDexEnabled true" to app/build.gradle under defaultConfig bad?
+* Why not call action creater directly? As opposed to passing through props?
+
+
+LEARNINGS
+----------
+* Debugging in XCODE: always focuse on the actual errors not warnings when failing build
+* react-native link replacings manual linking and pod install
+
+
