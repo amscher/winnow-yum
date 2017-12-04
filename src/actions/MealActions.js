@@ -1,29 +1,33 @@
 import firebase from 'react-native-firebase';
-import { Actions } from 'react-native-router-flux';
+
 import {
+	MEAL_CAPUTRE,
 	MEAL_CAPTURE_SUCCESS,
+	MEAL_CATPURE_FAILURE,
 	MEAL_CREATE,
 	MEAL_CREATE_SUCCESS,
 	MEALS_FETCH_SUCCESS,
 	GET_LOCATION_SUCCESS
 } from './types.js';
 
-export const mealCapture = (camera) => {
-	console.log("meal capture action")
+export const mealCapture = (camera, callbackFn) => {
 	return (dispatch) => {
+		dispatch({ type: MEAL_CAPTURE, payload: null });
+
 		camera.capture()
 			.then((data) => {
-				console.log(data);
 				dispatch({ type: MEAL_CAPTURE_SUCCESS, payload: { data: data, time: new Date() } } );
-				Actions.mealCreate();
 				navigator.geolocation.getCurrentPosition((pos) => dispatch({ type: GET_LOCATION_SUCCESS, payload: pos }));
+				callbackFn();
 			})
-			.catch(err => console.log(err));
+			.catch((err) => {
+				dispatch({ type: MEAL_CAPTURE_FAILURE, payload: null });
+				console.log(err)
+			});  // TODO: do something with this error?
 	}
 }
 
-export const mealCreate = ({ imagePath, time, geolocation }) => {
-
+export const mealCreate = ({ imagePath, time, geolocation }, onSuccessFn) => {
 	return (dispatch) => {
 		dispatch({ type: MEAL_CREATE });
 		const { currentUser } = firebase.auth();
@@ -32,18 +36,17 @@ export const mealCreate = ({ imagePath, time, geolocation }) => {
 		firebase.storage().ref(`/users/${currentUser.uid}/images/${time}`)
 			.put(imagePath)
 			.then(snapshot => {
-				console.log(snapshot);
 				var downloadImgPath = snapshot.downloadURL;
+				console.log(downloadImgPath);
 				// Add meal to firebase
 				firebase.database().ref(`/users/${currentUser.uid}/meals`)
 					.push({ imagePath: downloadImgPath, time, geolocation })
 					.then(() => {
-						dispatch({ type: MEAL_CREATE_SUCCESS })
-						Actions.popTo("personalFeed")
-						// OR Actions.personalFeed({ type: 'reset' })
+						dispatch({ type: MEAL_CREATE_SUCCESS });
+						onSuccessFn(); // returns to personal feed screen
 					});
 			})
-			.catch(err => console.log(err))
+			.catch(err => console.log(err)) // TODO: do something with this error?
 
 	}
 }

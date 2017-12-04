@@ -1,15 +1,15 @@
 import React, { Component } from 'react';
 import { View, Text } from 'react-native';
+import firebase from 'react-native-firebase';
 import { connect } from 'react-redux';
-import { LoginButton, AccessToken } from 'react-native-fbsdk';
 import { Card, CardSection, Button, Spinner } from './common';
-import { fbLoginUser } from '../actions';
+import { fbLoginUser, authStateAuthenticated } from '../actions';
 
 
 class LoginForm extends Component {
 	onFbLoginUser() {
 		// call action creator to update state
-		this.props.fbLoginUser();
+		this.props.fbLoginUser(() => this.props.navigator.push({screen: 'cibo.PersonalFeed'}));
 	}
 
 	renderButton() {
@@ -41,7 +41,6 @@ class LoginForm extends Component {
 	}
 }
 
-
 const styles = {
 	errorTextStyle: {
 		fontSize: 20,
@@ -55,4 +54,4 @@ const mapStateToProps = ({ auth }) => {
 	return { error, loading };
 };
 
-export default connect(mapStateToProps, { fbLoginUser })(LoginForm);
+export default connect(mapStateToProps, { fbLoginUser, authStateAuthenticated })(LoginForm);

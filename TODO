@@ -1,25 +1,75 @@
-* Start using git
-* Figure out how to run both ios and android at once
-* Better Eng Design + Roadmap (what functionality do I need before moving to design?)
+QUESTIONS
+------------
+* Is add "multiDexEnabled true" to app/build.gradle under defaultConfig bad?
+* Why not call action creater directly? As opposed to passing through props?
+* What is the "packager" that runs on localhost?
+--------------------------------------------------------
 
-* Handling errors with mealfetch and all actions!
-* Ordering of feed
-* Staying logged in
-* Spinner for when photo is being captured?
 * Choose photo from library
-* Edit meal photo
-* Look up open source react native projects for good design...
-	* Add button on the bottom right
-* Push meal flow ontop of feed vs. slide?
-* Try with iPhone
-* Request permissions (Android) programmatically (React Native, PermissionsAndroid)
+* Add note field to meal
+* Edit meal
+* Loading data on scroll? Only show one day at a time?
 
+* Symptoms flows
+
+* Look up open source react native projects for good design...
+	* Add button on the bottom right - react-native-action-button
+* Push meal flow ontop of feed vs. slide?
+* Try with iPhone device
+
+* Spinner for loading login page? (why won't login page load for Android?)
 * Handling login errors: https://firebase.google.com/docs/auth/ios/errors
+* How to set up testing
+* Link accounts? Only one email...
+
+* Testing for Facebook's login flow: https://developers.facebook.com/docs/facebook-login/testing-your-login-flow
+* Remove "publish" facebook permissions
+* Request permissions (Android) programmatically (React Native, PermissionsAndroid)
+	* If attempt is made without permissions, get them
+
 * Security of download URL for firebase storage?
+* Ability to delete account... (can do manually??)
+
+12/4
+---------
+X Spinner for when photo is being captured?
+
+
+12/2
+---------
+X Ordering of feed
+
+
+11/3
+---------
+X Figure out how to log out of Facebook
+
+
+10/31
+----------
+X logout
+X Get rid of react-native-router-flux
+X Figure out right structure for Navigation in App using RNN
+	X Should I be passing this.props.navigation to my action creators??? (should I create a NavigationActions class??)
+		X This works but instead use callbacks, as the above can get confusing base don when screens are created...
+
+
+10/30
+--------
+X Staying logged in
+	X Figure out where to store Auth State, and when to update it so that the app can start on the right page
+X Figure out why initial App initiliazation aysnc action isn't working
+X Try out example app for RNN
+X Set up react-native-navigation for Android
+X Decide which navigation framework to use - React Native Navigation
+
 
 
 10/27
 --------
+X Figure out how to run both ios and android at once
+X Better Eng Design (what functionality do I need before moving to design?)
+X Start using git
 X Finish save image to firebase!!
 X Read a bit about linking (react-native link vs. manual/pod install for iOS)
 
@@ -54,15 +104,13 @@ X Create landing page
 X Finish Auth states - spinner, log out
 
 
-QUESTIONS
-------------
-* Is add "multiDexEnabled true" to app/build.gradle under defaultConfig bad?
-* Why not call action creater directly? As opposed to passing through props?
 
 
 LEARNINGS
 ----------
 * Debugging in XCODE: always focuse on the actual errors not warnings when failing build
-* react-native link replacings manual linking and pod install
+* React-native link replacings manual linking and pod install
+* Navigation in react native is difficult... there are lots of options
+
 
 

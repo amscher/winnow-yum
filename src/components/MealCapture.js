@@ -8,8 +8,13 @@ import { mealCapture } from '../actions';
 class MealCapture extends Component {
 
 	onCameraCapture() {
-		this.props.mealCapture(this.camera);
+		this.props.mealCapture(this.camera, () => this.goToMealCreate());
 	}
+
+	goToMealCreate() {
+		this.props.navigator.push({ screen: 'cibo.MealCreate' })
+	}
+
 
 	render () {
 		return (

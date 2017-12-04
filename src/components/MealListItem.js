@@ -5,6 +5,7 @@ import { CardSection } from './common';
 class MealListItem extends Component {
 	render() {
 		const { imagePath, time } = this.props.meal;
+		console.log(imagePath);
 
 		return (
 			<CardSection>

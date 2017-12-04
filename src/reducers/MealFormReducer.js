@@ -1,11 +1,14 @@
 import {
 	MEAL_CREATE,
 	MEAL_CREATE_SUCCESS,
+	MEAL_CAPTURE,
 	MEAL_CAPTURE_SUCCESS,
+	MEAL_CAPTURE_FAILURE,
 	GET_LOCATION_SUCCESS
 } from '../actions/types';
 
 const INITIAL_STATE = {
+	loading: false,
 	imagePath: '',
 	time: '',
 	geolocation: null,
@@ -19,8 +22,12 @@ export default (state = INITIAL_STATE, action) => {
 			return { ...state, attemptingCreation: true }
 		case MEAL_CREATE_SUCCESS:
 			return { ...INITIAL_STATE }
+		case MEAL_CAPTURE:
+			return { ...state, loading: true }
 		case MEAL_CAPTURE_SUCCESS:
-			return { ...state, imagePath: action.payload.data.path, time: action.payload.time }
+			return { ...state, loading: false, imagePath: action.payload.data.path, time: action.payload.time }
+		case MEAL_CAPTURE_FAILURE:
+			return { ...state, loading: false }
 		case GET_LOCATION_SUCCESS:
 			return { ...state, geolocation: action.payload }
 		default:

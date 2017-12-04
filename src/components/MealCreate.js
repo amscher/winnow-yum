@@ -8,8 +8,8 @@ class MealCreate extends Component {
 
 	handleMealCreate() {
 		const { imagePath, time, geolocation } = this.props;
-
-		this.props.mealCreate({ imagePath, time, geolocation });
+		this.props.mealCreate({ imagePath, time, geolocation },
+				() => this.props.navigator.popToRoot({ animated: true }));
 	}
 
 	render () {
