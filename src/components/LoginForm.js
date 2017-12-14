@@ -7,10 +7,6 @@ import { fbLoginUser, authStateAuthenticated } from '../actions';
 
 
 class LoginForm extends Component {
-	onFbLoginUser() {
-		// call action creator to update state
-		this.props.fbLoginUser(() => this.props.navigator.push({screen: 'cibo.PersonalFeed'}));
-	}
 
 	renderButton() {
 		if (this.props.loading) {
@@ -18,7 +14,7 @@ class LoginForm extends Component {
 		}
 
 		return (
-			<Button onPress={this.onFbLoginUser.bind(this)}>
+			<Button onPress={this.props.fbLoginUser}>
 				Facebook Login
 			</Button>
 		);

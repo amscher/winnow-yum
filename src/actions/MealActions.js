@@ -1,7 +1,8 @@
 import firebase from 'react-native-firebase';
+import { NavigationActions } from 'react-navigation';
 
 import {
-	MEAL_CAPUTRE,
+	MEAL_CAPTURE,
 	MEAL_CAPTURE_SUCCESS,
 	MEAL_CATPURE_FAILURE,
 	MEAL_CREATE,

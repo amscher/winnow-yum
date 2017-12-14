@@ -2,14 +2,15 @@ import _ from 'lodash';
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { ListView, View } from 'react-native';
-import { mealsFetch } from '../actions';
+import { NavigationActions } from 'react-navigation';
+
 import { Button, CardSection } from './common';
 import MealListItem from './MealListItem';
+import { mealsFetch, launchMealAddFlow } from '../actions';
 
 class PersonalFeed extends Component {
 	constructor(props) {
 		super(props);
-		this.props.navigator.setOnNavigatorEvent(this.onNavigatorEvent.bind(this));
 	}
 
 	componentWillMount() {
@@ -25,16 +26,15 @@ class PersonalFeed extends Component {
 	}
 
 
-	pushAddMeal = () => {
-		this.props.navigator.push({ screen: 'cibo.MealCapture' });
-	}
-
   toggleDrawer = () => {
-    this.props.navigator.toggleDrawer({
-      side: 'left',
-      animated: true
-    });
-  }
+  	console.log(this.props);
+  	this.props.navigation.navigate('DrawerToggle');
+  };
+
+
+	pushAddMeal = () => {
+		this.props.navigation.navigate('mealCreateStack');
+	}
 
 	onNavigatorEvent(event) {
 		if (event.type == 'NavBarButtonPress') {
@@ -85,4 +85,4 @@ const mapStateToProps = state => {
 	return { meals };
 }
 
-export default connect(mapStateToProps, { mealsFetch })(PersonalFeed);
+export default connect(mapStateToProps, { mealsFetch, launchMealAddFlow })(PersonalFeed);

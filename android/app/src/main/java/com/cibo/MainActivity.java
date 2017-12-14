@@ -1,23 +1,21 @@
 package com.cibo;
 
 import com.facebook.react.ReactActivity;
-import com.reactnativenavigation.controllers.SplashActivity;
 import android.content.Intent;
 
-public class MainActivity extends SplashActivity {
+public class MainActivity extends ReactActivity {
      @Override
      public void onActivityResult(int requestCode, int resultCode, Intent data) {
          super.onActivityResult(requestCode, resultCode, data);
          MainApplication.getCallbackManager().onActivityResult(requestCode, resultCode, data);
      }
 
-/* - removed due to react-native-navigation
-    // /**
-    //  * Returns the name of the main component registered from JavaScript.
-    //  * This is used to schedule rendering of the component.
-    //  */
-    // @Override
-    // protected String getMainComponentName() {
-    //     return "cibo";
-    // }
+    /**
+     * Returns the name of the main component registered from JavaScript.
+     * This is used to schedule rendering of the component.
+     */
+    @Override
+    protected String getMainComponentName() {
+        return "cibo";
+    }
 }

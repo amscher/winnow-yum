@@ -12,7 +12,7 @@ class MealCapture extends Component {
 	}
 
 	goToMealCreate() {
-		this.props.navigator.push({ screen: 'cibo.MealCreate' })
+		this.props.navigation.navigate('mealCreate');
 	}
 
 

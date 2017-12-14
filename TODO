@@ -5,12 +5,24 @@ QUESTIONS
 * What is the "packager" that runs on localhost?
 --------------------------------------------------------
 
+* Change so that navigation calls don't use strings
+		* Update NavActions
+* Show spinner on Meal Create
+* App doesn't post to facebook "on login"
+** Explore https://nuclide.io/ IDE
+** Understanding how FBSDK was built, i.e. the native module, etc...
+** Course on understanding the architecture of React Native
+
+* Play with visual design of drawer - No header on drawer
+
 * Choose photo from library
 * Add note field to meal
 * Edit meal
 * Loading data on scroll? Only show one day at a time?
 
 * Symptoms flows
+
+* Change animation from loading to logged in page
 
 * Look up open source react native projects for good design...
 	* Add button on the bottom right - react-native-action-button
@@ -30,8 +42,34 @@ QUESTIONS
 * Security of download URL for firebase storage?
 * Ability to delete account... (can do manually??)
 
+
+12/8
+--------
+X How does Thunk work with redux to dispatch actions from functions
+X Test Android - got it working again!! problem was due to calling LoginManager.setLoginBehavior with the wrong loginbehavior value for android
+X Finish removing react-native-navigation from iOS and test
+X Add loading screen when retrieving loggedInUser
+
+
+12/7
+--------
+X Remove react-native-navigation
+X Update all navigate methods
+X Stay logged in
+XX Create two different NavStacks for logged in and logged out???
+X Shouldn't be able to swipe to logged out
+
+12/6
+---------
+X Worked on navigation
+
+12/5
+---------
+X Get drawer navigation to work
+
 12/4
 ---------
+X Switched to react-navigation
 X Spinner for when photo is being captured?
 
 
@@ -111,6 +149,7 @@ LEARNINGS
 * Debugging in XCODE: always focuse on the actual errors not warnings when failing build
 * React-native link replacings manual linking and pod install
 * Navigation in react native is difficult... there are lots of options
-
+* Android - make sure all Build tools specifices in build.gradle match...
+* FacebookSDK -- using LoginBehavior in order to let people reset their password, needs to be different for each platform
 
 

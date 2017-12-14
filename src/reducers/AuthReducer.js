@@ -1,3 +1,5 @@
+import firebase from 'react-native-firebase';
+
 import {
 	IS_AUTHENTICATED,
 	IS_NOT_AUTHENTICATED,
@@ -8,7 +10,7 @@ import {
 } from '../actions/types';
 
 const INITIAL_STATE = {
-	isAuthed: false,
+	isAuthed: undefined,
 	loading: false,
 	user: null,
 	error: ''
@@ -18,7 +20,7 @@ export default (state = INITIAL_STATE, action) => {
 	console.log(action);
 	switch (action.type) {
 		case IS_AUTHENTICATED:
-			return { ...state, isAuthed: true };
+			return { ...state, isAuthed: true, user: action.payload };
 		case IS_NOT_AUTHENTICATED:
 			return { ...state, isAuthed: false };
 		case FB_LOGIN:

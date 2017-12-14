@@ -1,5 +1,7 @@
 import firebase from 'react-native-firebase';
+import { Platform } from 'react-native';
 import { AccessToken, LoginManager } from 'react-native-fbsdk';
+import { NavigationActions } from 'react-navigation';
 import {
 	FB_LOGIN,
 	FB_LOGIN_SUCCESS,
@@ -9,13 +11,13 @@ import {
 	LOG_OUT
 } from './types';
 
-const FB_LOGIN_BEHAVIOR = 'web';
+const FB_LOGIN_BEHAVIOR = Platform.OS === 'ios' ? 'web' : 'native_with_fallback';
 
 export const getLoggedInUser = () => {
 	return (dispatch) => {
 		firebase.auth().onAuthStateChanged(function(user) {
 			if (user) {
-				dispatch({ type: IS_AUTHENTICATED });
+				dispatch({ type: IS_AUTHENTICATED, payload: user });
 			} else {
 				dispatch({ type: IS_NOT_AUTHENTICATED });
 			}
@@ -23,32 +25,33 @@ export const getLoggedInUser = () => {
 	};
 };
 
+// helper
 const handleLoginCancelled = (dispatch) => {
 	console.log("cancelled");
 	dispatch({ type: LOGIN_FAIL, payload: "" });
 };
 
+// helper
 const handleFirebaseLoginFail = (dispatch, error) => {
 	console.log(`Login fail with: ${error.messsage}`);
 	dispatch({ type: LOGIN_FAIL, payload: error });
 	// TODO: Handle errors from firebase.auth().signInWithCredential
 }
 
-const handleFirebaseLoginSuccess = (dispatch, currentUser, onSuccessFn) => {
+// helper
+const handleFirebaseLoginSuccess = (dispatch, currentUser) => {
 	if (currentUser === 'cancelled') {
 		console.log('Login cancelled');
 	} else {
 		// now signed in
 		console.warn(JSON.stringify(currentUser.toJSON()));
 		dispatch({ type: FB_LOGIN_SUCCESS, payload: currentUser });
-		onSuccessFn();
 	}
 }
 
-export const fbLoginUser = (onSuccessFn) => {
+export const fbLoginUser = () => {
 	return (dispatch) => {
 		dispatch({ type: FB_LOGIN });
-
 		LoginManager.setLoginBehavior(FB_LOGIN_BEHAVIOR); // Enables changing of email addresses
 		LoginManager
 			.logInWithReadPermissions(['public_profile', 'email'])
@@ -69,7 +72,7 @@ export const fbLoginUser = (onSuccessFn) => {
 							return firebase.auth().signInWithCredential(credential);
 						})
 						.then((currentUser) => {
-							handleFirebaseLoginSuccess(dispatch, currentUser, onSuccessFn);
+							handleFirebaseLoginSuccess(dispatch, currentUser);
 						})
 						.catch((error) => { handleFirebaseLoginFail(dispatch, error) });
 				},
