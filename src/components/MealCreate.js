@@ -2,19 +2,22 @@ import React, { Component } from 'react';
 import { View, Image } from 'react-native';
 import { connect } from 'react-redux';
 import { mealCreate } from '../actions';
-import { Button, CardSection } from './common'
+import { Button, CardSection, Spinner } from './common'
 
 class MealCreate extends Component {
 
 	handleMealCreate() {
-		const { imagePath, time, geolocation } = this.props;
-		this.props.mealCreate({ imagePath, time, geolocation },
-				() => this.props.screenProps.dismiss());
+		const { imagePath, time, geolocation, loading } = this.props;
+		this.props.mealCreate({ imagePath, time, geolocation }, this.props.screenProps.dismissKey);
 	}
 
 	render () {
 		const imgPath = '' + this.props.imagePath;
 		console.log(this.props);
+
+		if (this.props.loading) {
+			return <Spinner size="large" />;
+		}
 
 		return (
 			<View>

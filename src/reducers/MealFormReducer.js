@@ -12,14 +12,14 @@ const INITIAL_STATE = {
 	imagePath: '',
 	time: '',
 	geolocation: null,
-	attemptingCreation: false
+	loading: false
 };
 
 export default (state = INITIAL_STATE, action) => {
 	console.log(action);
 	switch (action.type) {
 		case MEAL_CREATE:
-			return { ...state, attemptingCreation: true }
+			return { ...state, loading: true }
 		case MEAL_CREATE_SUCCESS:
 			return { ...INITIAL_STATE }
 		case MEAL_CAPTURE:

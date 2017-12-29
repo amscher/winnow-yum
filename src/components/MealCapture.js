@@ -8,13 +8,8 @@ import { mealCapture } from '../actions';
 class MealCapture extends Component {
 
 	onCameraCapture() {
-		this.props.mealCapture(this.camera, () => this.goToMealCreate());
+		this.props.mealCapture(this.camera);
 	}
-
-	goToMealCreate() {
-		this.props.navigation.navigate('mealCreate');
-	}
-
 
 	render () {
 		return (

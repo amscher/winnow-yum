@@ -5,24 +5,23 @@ QUESTIONS
 * What is the "packager" that runs on localhost?
 --------------------------------------------------------
 
-* Change so that navigation calls don't use strings
-		* Update NavActions
-* Show spinner on Meal Create
+* Try seeing if there are settings / paramters on react-native-camera that will return a smaller file...
 * App doesn't post to facebook "on login"
+* React native crash reporting (bugsnag or fabric)
 ** Explore https://nuclide.io/ IDE
 ** Understanding how FBSDK was built, i.e. the native module, etc...
 ** Course on understanding the architecture of React Native
-
-* Play with visual design of drawer - No header on drawer
 
 * Choose photo from library
 * Add note field to meal
 * Edit meal
 * Loading data on scroll? Only show one day at a time?
 
-* Symptoms flows
 
 * Change animation from loading to logged in page
+* Create constants for all navigation routes??
+
+* Symptoms flows
 
 * Look up open source react native projects for good design...
 	* Add button on the bottom right - react-native-action-button
@@ -36,11 +35,22 @@ QUESTIONS
 
 * Testing for Facebook's login flow: https://developers.facebook.com/docs/facebook-login/testing-your-login-flow
 * Remove "publish" facebook permissions
-* Request permissions (Android) programmatically (React Native, PermissionsAndroid)
+* Request permissions (Android) programmatically (React Native, PermissionsAndroid) -- camera and storage
 	* If attempt is made without permissions, get them
 
 * Security of download URL for firebase storage?
 * Ability to delete account... (can do manually??)
+* Added android:largeHeap="true" in AndroidManifest.xml to avoid java.OutOfMemory error on react-native-camera capture.... need an alternative solution
+
+
+12/14
+-------
+X Show spinner on Meal Create
+X Play with visual design of drawer - No header on drawer
+X Created Modal for CreateMealStack
+X Figured out two methods for being able to dismiss the modal (stacknavigator)
+X Change so that navigation calls don't use strings
+		X Update NavActions
 
 
 12/8

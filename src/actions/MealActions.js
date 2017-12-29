@@ -4,22 +4,22 @@ import { NavigationActions } from 'react-navigation';
 import {
 	MEAL_CAPTURE,
 	MEAL_CAPTURE_SUCCESS,
-	MEAL_CATPURE_FAILURE,
+	MEAL_CAPTURE_FAILURE,
 	MEAL_CREATE,
 	MEAL_CREATE_SUCCESS,
 	MEALS_FETCH_SUCCESS,
 	GET_LOCATION_SUCCESS
 } from './types.js';
 
-export const mealCapture = (camera, callbackFn) => {
+export const mealCapture = (camera) => {
 	return (dispatch) => {
-		dispatch({ type: MEAL_CAPTURE, payload: null });
-
+		// dispatch({ type: MEAL_CAPTURE, payload: null });
 		camera.capture()
 			.then((data) => {
+				console.log(data);
 				dispatch({ type: MEAL_CAPTURE_SUCCESS, payload: { data: data, time: new Date() } } );
 				navigator.geolocation.getCurrentPosition((pos) => dispatch({ type: GET_LOCATION_SUCCESS, payload: pos }));
-				callbackFn();
+				dispatch(NavigationActions.navigate({routeName: 'mealCreate'}));
 			})
 			.catch((err) => {
 				dispatch({ type: MEAL_CAPTURE_FAILURE, payload: null });
@@ -28,7 +28,7 @@ export const mealCapture = (camera, callbackFn) => {
 	}
 }
 
-export const mealCreate = ({ imagePath, time, geolocation }, onSuccessFn) => {
+export const mealCreate = ({ imagePath, time, geolocation }, dismissKey) => {
 	return (dispatch) => {
 		dispatch({ type: MEAL_CREATE });
 		const { currentUser } = firebase.auth();
@@ -44,7 +44,7 @@ export const mealCreate = ({ imagePath, time, geolocation }, onSuccessFn) => {
 					.push({ imagePath: downloadImgPath, time, geolocation })
 					.then(() => {
 						dispatch({ type: MEAL_CREATE_SUCCESS });
-						onSuccessFn(); // returns to personal feed screen
+						dispatch(NavigationActions.back({key: dismissKey}));
 					});
 			})
 			.catch(err => console.log(err)) // TODO: do something with this error?
